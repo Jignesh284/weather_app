@@ -6,7 +6,7 @@
             $lon = "";
             
             if(!isset($_POST["lat"])  ) {
-                $geoURL = "https://maps.googleapis.com/maps/api/geocode/xml?address=".urlencode($_POST["street"]).",".urlencode($_POST["city"]). ",".urlencode($_POST["state"])."&key=AIzaSyAzOoK5Fbvxi0qD9c4Zu0w2AYmMt4V1B-U";
+                $geoURL = "https://maps.googleapis.com/maps/api/geocode/xml?address=".urlencode($_POST["street"]).",".urlencode($_POST["city"]). ",".urlencode($_POST["state"])."&key=API_ID";
                 $resp = file_get_contents($geoURL);
                 $parseXML = new SimpleXMLElement($resp);
 
@@ -23,7 +23,7 @@
                 $lon = $_POST["lon"];
             }
         
-            $darkUrl = "https://api.forecast.io/forecast/fff05f8e5ff831abbd240afca238ba01/".$lat.",".$lon."?exclude=minutely,hourly,alerts,flags";
+            $darkUrl = "https://api.forecast.io/forecast/API_ID/".$lat.",".$lon."?exclude=minutely,hourly,alerts,flags";
             $data = file_get_contents($darkUrl) or die("can't load data");
             echo $data;
 
@@ -31,7 +31,7 @@
             $lat = $_POST["lat"];
             $lon = $_POST["lon"];
             $time = $_POST["time"];
-            $url = "https://api.darksky.net/forecast/fff05f8e5ff831abbd240afca238ba01/".$lat.",".$lon.",".$time."?exclude=minutely";
+            $url = "https://api.darksky.net/forecast/API_ID/".$lat.",".$lon.",".$time."?exclude=minutely";
             $data = file_get_contents($url) or die("can't load data");
             $dailyData = json_decode($data, true);
             echo $data;
